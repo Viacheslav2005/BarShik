@@ -41,14 +41,14 @@ $query = mysqli_fetch_all(mysqli_query($con, "SELECT * FROM `Product`"));
 <main>
     <div class="catalog">
             <h2>Каталог</h2>
-            <div class="category">
+            <!-- <div class="category">
                 <button class="button-category">Соки</button>
                 <button class="button-category">Кофе</button>
                 <button class="button-category">Газированные напитки</button>
                 <button class="button-category">Молочные напитки</button>
                 <button class="button-category">Вода</button>
                 <button class="button-category">Детские напитки</button>
-            </div>
+            </div> -->
             <div class="bloc-drinks">
                 <div class="drink">
                     <?php foreach($query as $item) { ?>
@@ -57,6 +57,7 @@ $query = mysqli_fetch_all(mysqli_query($con, "SELECT * FROM `Product`"));
                                 <img src="" alt="">
                                 <div class='info_tovar'>
                                     <input type="hidden" name="id_product" value="<?=$item[0]?>">
+                                    <img src="/images/<?=$item[5]?>" alt="" style = "width: 200px; height: 200px; margin: 5% 20%;">
                                     <h4><input readonly type="text" name = "name" value="<?=$item[1]?>"></h3>
                                     <h4><input readonly type="text" name = "price" value="<?=$item[4]?>"> рублей</h4>
                                 </div>
@@ -72,7 +73,7 @@ $query = mysqli_fetch_all(mysqli_query($con, "SELECT * FROM `Product`"));
                     <?php } ?>
                 </div>
             </div>
-            <button class="podrobnee">Подробнее</button>
+            <!-- <button class="podrobnee">Подробнее</button> -->
     </div>
 
 </div>

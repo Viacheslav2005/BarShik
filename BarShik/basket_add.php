@@ -17,9 +17,9 @@ $jsonData = json_encode($add_arr);
 
 if($name and $price and $count) {
     $add = mysqli_query($con, "INSERT INTO `Basket`(`User_id`, `Content`) VALUES ('$id_user', '$jsonData')");
-    $_SESSION["message"] = "Yes";
+    $_SESSION["message"] = "Товар успешно добавлен в корзину!";
     header("Location: basket.php");
 } else {
-    $_SESSION["message"] = "No";
+    $_SESSION["message"] = "Ошибка";
 }
 ?>

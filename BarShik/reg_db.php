@@ -13,7 +13,8 @@ $result = mysqli_query($con, "SELECT * FROM `Users` WHERE `Email` = '$email'");
 $user1 = mysqli_fetch_assoc($result);
 
 if(!empty($user1)) {
-    echo "Данный логин уже используется";
+    $_SESSION["message"] = "Данный логин уже используется";
+    header('Location: reg.php');
     exit();
 } else {
     mysqli_query($con, "INSERT INTO `Users`(`Email`, `Password_hash`, `Bonus_points`, `role`) VALUES ('$email', $password, 1, 'user')");

@@ -14,9 +14,11 @@ if (isset($user_id)) {
     $_SESSION["auth"] = true;
     if ($user['role'] == 'user') {
         setcookie('User_id', $user_id, time() + 3600, "/");
+        $_SESSION["message"] = "Авторизация успешна!";
         header('Location: personal-cab.php');
         $_SESSION["User_id"] = $user["User_id"];
     } else {
+        $_SESSION["message"] = "Добро пожаловать, Администратор!";
         header('Location:admin\product.php');
         $_SESSION["User_id"] = $user["User_id"];
     }

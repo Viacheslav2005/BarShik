@@ -24,7 +24,7 @@ $user = isset($_SESSION["User_id"]) ? mysqli_fetch_assoc(mysqli_query($con, "SEL
                 <a class="nav_text" href="order.php">Заказы</a>
                 <a class="nav_text" href="#footer">Статистика и отчеты</a>
                 <?php if ($user) {?>
-                <a href="/Index.php">
+                <a href="/admin/Index.php">
                     <?= $user?>
                 </a>
                 <?php } ?>

@@ -207,6 +207,10 @@ a:hover {
     text-decoration: underline;
 }
 
+.bloc-drinks {
+    margin: 5% 0;
+}
+
 /* блок с отзывами */
 .slider {
     display: flex;

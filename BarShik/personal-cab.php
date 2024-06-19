@@ -1,13 +1,13 @@
 <?php
-    session_start();
-    include "header.php";
-    include "connect.php";
 
-    $id = $_SESSION['User_id'];
-    $Info_user = mysqli_fetch_all(mysqli_query($con,"SELECT * from Users where User_id = $id"));
-    $Info_orders = mysqli_fetch_all(mysqli_query($con,"SELECT * from Orders where User_id = $id"));
+session_start();
+include "header.php";
+include "connect.php";
+$id = $_SESSION['User_id'];
+$Info_user = mysqli_fetch_all(mysqli_query($con,"SELECT * from Users where User_id = $id"));
+$Info_orders = mysqli_fetch_all(mysqli_query($con,"SELECT * from Orders where User_id = $id"));
 
-    ?>
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,20 +22,18 @@
 <body>
     <main>
         <div class="container1">
-        
             <div class="info_user">
             <h2 class="text-personal-account">Личный кабинет</h2>
                 <div class="img-user">
                 <img src="../images\free-icon-boy-4537069.png" class="img-user" alt="">
                 </div>
-                <form action="" method="post" class="form-user-info">
-                    <?php foreach ($Info_user as $Info_user) {
-                        ?>
-                        <input type="text"  value="<?=$Info_user[1]?>" placeholder="Ваше Имя">
-                    <input type="text" value="<?=$Info_user[2]?>" placeholder="email">
+                <form action="personal-cab-db.php" method="POST" class="form-user-info">
+                    <?php foreach ($Info_user as $Info_user) { ?>
+                        <input type="hidden" name="user_id" value = "<?=$Info_user[0]?>">
+                        <input type="text" name = "Name"  value="<?=$Info_user[1]?>" placeholder="email">
+                        <input type="text" name = "Password" value="<?=$Info_user[2]?>" placeholder="password">
                     <p>Бонусы: <?=$Info_user[3]?></p>
-                    <?php }
-                    ?>
+                    <?php } ?>
                     <button name="edit" class="edit">Сохранить изменения</button>
                 </form>
                 </div>
@@ -56,25 +54,22 @@
                             <tbody> 
                                 <?php
                                     foreach ($Info_orders as $orders) {
-                                    $info_product = mysqli_fetch_all(mysqli_query($con, "SELECT * FROM Order_Product 
-                                    INNER JOIN Orders ON Order_Product.Id_order = Orders.Id_order
-                                    INNER JOIN Product ON Order_Product.Id_product = Product.Id_product
-                                    WHERE Orders.Id_order = $orders[0] and Orders.User_id = $id"));
+                                    $info_product = mysqli_fetch_all(mysqli_query($con, "SELECT * FROM `Orders` INNER JOIN Product ON `Orders`.`id_product` = `Product`.`Id_product` WHERE Orders.User_id = '$id'"));
                                     $total_sum = 0; // Инициализация переменной для подсчета общей суммы заказа
-                                    foreach ($info_product as $product1) {
-                                        $total_sum += $product1[3] * $product1[16]; // Накапливаем общую сумму заказа
-                                    }
+                                    // foreach ($info_product as $product1) {
+                                    // }
                                 ?>
                             <tr>
-                                <td>№ <?=$orders[0]?></td>
-                                <td><?=$orders[2]?></td>
+                                <td>№<?=$orders[0]?></td>
+                                <td><?=$orders[3]?></td>
                                 <td>
                                     <?php foreach ($info_product as $product) {
-                                    echo "<p>$product[13] ($product[3] шт)<br></p>";
+                                    $count = $product[5] / $product[13];
+                                    echo "<p>$product[10] ($count  шт)<br></p>";
                                      } ?>
                                 </td>
-                                <td><?=$total_sum?></td>
-                                <td><?=$orders[3]?></td>
+                                <td><?=$product[5]?></td>
+                                <td><?=$product[4]?></td>
                                 <td><a href="" data-bs-toggle="modal" data-bs-target="#feedback" >Оставить отзыв</a></td>
                             </tr>
                                 <?php } ?>

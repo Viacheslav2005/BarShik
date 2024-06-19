@@ -20,20 +20,19 @@ $cat_result = mysqli_fetch_all($query_cat);
 <?php
 include "header_admin.php";
 ?>
-        <section class="sort_1">
-            <div class="sort">
-                <ul class="list-group list-group-horizontal mt-5 mb-3">
-                    <h4>Сортировка по дате публикации:</h4>
-                    <li class="list-group-item">
-                        <a href=""><img width="30" src="asc-sort.png" alt=""></a>
-                    </li>
-                    <li class="list-group-item">
-                        <a href=""><img width="30" src="desc-sort.png" alt=""></a>
-                    </li>
-                </ul>
-            </div>
-        </section>
+<!-- <section class="sort_1">
+    <div class="sort">
+        <ul class="list-group list-group-horizontal mt-5 mb-3">
+            <h4>Сортировка по дате публикации:</h4>
+            <li class="list-group-item">
+                <a href=""><img width="30" src="asc-sort.png" alt=""></a>
+            </li>
+            <li class="list-group-item">
+                <a href=""><img width="30" src="desc-sort.png" alt=""></a>
+            </li>
+        </ul>
     </div>
+</section> -->
     <div class="products">
         <table>
             <tr>

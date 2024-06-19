@@ -20,7 +20,7 @@ include "header.php";
         <h3>Закажите напитки к себе домой</h3>
         <p >Наша компания предлагает широкий ассортимент напитков для тех, кто всегда в движении и ценит качество и удобство.</p>
         <p> У нас вы найдете прохладные газированные напитки, натуральные соки, чай и кофе, а также молочные продукты и спортивные напитки.</p>
-        <button  class="but_buy" href="#">Заказать</button>
+        <button class="but_buy" onclick="document.location = 'catalog.php'">Заказать</button>
     </div>
     <div class="bloc-img-description">
         <img src="images\Group 8192.png" alt="" class="logo" height="500px" wight="500px">

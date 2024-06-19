@@ -23,7 +23,7 @@ include "header_admin.php";
             <thead>
                 <tr>    
                     <th>Номер заказа</th>
-                    <th>пользователь </th>
+                    <th>Пользователь</th>
                     <th>Дата</th>
                     <th>Состав заказа</th>
                     <th>Сумма</th>
@@ -36,13 +36,8 @@ include "header_admin.php";
                     $Info_user = mysqli_fetch_all(mysqli_query($con,"SELECT * from `Users` 
                     INNER JOIN Orders on Users.User_id = Orders.User_id
                     where Id_order	= $orders[0]"));
-                    $info_product = mysqli_fetch_all(mysqli_query( $con,"SELECT * FROM Order_Product 
-                    INNER JOIN Orders ON Order_Product.Id_order = Orders.Id_order
-                    INNER JOIN Product ON Order_Product.Id_product = Product.Id_product"));
-                    $total_sum = 0; // Инициализация переменной для подсчета общей суммы заказа
-                    foreach ($info_product as $product1) {
-                        $total_sum += $product1[3] * $product1[16]; // Накапливаем общую сумму заказа
-                    }
+                    $info_product = mysqli_fetch_all(mysqli_query($con, "SELECT * FROM `Orders` INNER JOIN Product ON `Orders`.`id_product` = `Product`.`Id_product`"));
+                    $total_sum = $orders[5]; // Инициализация переменной для подсчета общей суммы заказа
                 ?>
             <tr>
                 <form action="order_update.php" method ="POST">
@@ -64,22 +59,23 @@ include "header_admin.php";
                                 <label for="message-text" class="col-form-label">Пользователь</label>
                                 <input type="text" name="name"readonly value="<?=$User[1]?>" >
                                 <label for="message-text" class="col-form-label">Отзыв</label>
-                                <input type="text" name="comennt"readonly value="<?=$orders[7]?>" >
+                                <input type="text" name="comennt"readonly value="<?=$orders[8]?>" >
                               </div>
                           </div>
                           <div class="modal-footer">
                             <button type="submit" class="btn btn-primary">Оставить отзыв</button>
                           </div>
                     <?php } ?></td>
-                    <td><?=$orders[2]?></td>
+                    <td><?=$orders[3]?></td>
                     <td>
                     <?php foreach ($info_product as $product) {?>
-                    <p><?=$product[13]?> <?=$product[3]?> шт<br></p>
+                        <?php $count = $product[5] / $product[13]?>
+                    <p><?=$product[10]?> <?=$count?> шт<br></p>
                     <?php } ?></td>
                     <td><?=$total_sum?></td>
                     <td>                                    
                     <select  name = "delevery" value="">
-                        <option name="" id="" selected value = "<?=$orders[3]?>" ><?=$orders[3]?></option>
+                        <option name="" id="" selected value = "<?=$orders[4]?>" ><?=$orders[4]?></option>
                         <option name="" id="" value ="Доставлен">Доставлен</option>
                         <option name="" id="" value ="В доставке">В доставке</option>
                         <option name="" id="" value ="Готовим">Готовим</option>

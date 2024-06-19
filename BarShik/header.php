@@ -5,10 +5,10 @@ session_start();
 
 $user = isset($_SESSION["User_id"]) ? mysqli_fetch_assoc(mysqli_query($con, "SELECT `role` FROM Users WHERE User_id =".$_SESSION['User_id']))['role'] : false;
 
-if(isset($_SESSION["message"])) {
+if (isset($_SESSION["message"])) {
     $mess = $_SESSION["message"];
-    echo "<script>alert($mess)</script>";
-    unset($mess);
+    echo "<script>alert('$mess')</script>";
+    unset($_SESSION["message"]);
 }
 ?>
 <!DOCTYPE html>

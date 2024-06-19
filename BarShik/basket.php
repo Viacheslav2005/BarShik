@@ -14,7 +14,7 @@ if (mysqli_num_rows($query) > 0) {
     $data = json_decode($jsonData, true); // Второй аргумент true позволяет получить массив
 
 ?>
-<form action="basket_add.php" method="POST" style="display: flex; flex-direction: column; width: 25vw;">
+<form action="basket_order_add.php" method="POST" style="display: flex; flex-direction: column; width: 25vw;">
     <label for="">Название</label>
     <input readonly type="text" name="name" id="" value="<?=$data['name']?>">
     <label for="">Цена</label>
@@ -25,7 +25,7 @@ if (mysqli_num_rows($query) > 0) {
     <input readonly type="text" name="id_product" id="" value="<?=$data['id_product']?>">
     <input type="submit" value="Заказать">
 </form>
-<a href = "basket_order_db.php">Очистить корзину</a>
+<a href = "basket_db.php">Очистить корзину</a>
 <?php
 } else {
     echo "No results found.";
