@@ -21,6 +21,6 @@ if(!empty($user1)) {
 
     $_SESSION["User_id"] = mysqli_insert_id($con);
 
-    header('Location: personal-cab.php');
+    header('Location: auto.php');
 }
 ?>
